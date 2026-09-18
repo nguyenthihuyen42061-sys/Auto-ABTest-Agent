@@ -55,20 +55,36 @@ graph TD
 ## 🧮 统计学数理方法论
 
 ### 1. 样本比例失衡 (Sample Ratio Mismatch, SRM)
-采用卡方拟合优度检验（Goodness-of-Fit $\chi^2$ Test）：
-$$\chi^2 = \sum_{i \in \{c, t\}} \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(1)$$
+采用卡方拟合优度检验（Goodness-of-Fit $\chi^2$ 检验）：
+
+$$
+\chi^2 = \sum_{i \in \{c, t\}} \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(1)
+$$
+
 若 $p < 0.01$，判定流量网关分配或埋点上报存在系统性故障。
 
-### 2. 方差齐性检验 (Levene's Test - Brown-Forsythe 稳健变体)
-采用中位数作为离差中心：
-$$W = \frac{(N-k)}{(k-1)} \frac{\sum_{i=1}^k N_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^k \sum_{j=1}^{N_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}, \quad Z_{ij} = |Y_{ij} - \tilde{Y}_{i}|$$
+### 2. 方差齐性检验 (Levene 检验 - Brown-Forsythe 稳健变体)
+采用组内中位数 $\tilde{Y}_i$ 作为离差中心，构造统计量 $W$：
 
-### 3. Welch's $t$-test 异方差修正
-针对互联网业务中方差不齐的常态，调整有效自由度 $\nu$：
-$$\nu \approx \frac{\left( \frac{s_c^2}{n_c} + \frac{s_t^2}{n_t} \right)^2}{\frac{(s_c^2/n_c)^2}{n_c-1} + \frac{(s_t^2/n_t)^2}{n_t-1}}$$
+$$
+W = \frac{N-k}{k-1} \cdot \frac{\sum_{i=1}^k N_i (\bar{Z}_{i\cdot} - \bar{Z}_{\cdot\cdot})^2}{\sum_{i=1}^k \sum_{j=1}^{N_i} (Z_{ij} - \bar{Z}_{i\cdot})^2}
+$$
 
-### 4. 效应量 Cohen's $d$
-$$d = \frac{\bar{X}_t - \bar{X}_c}{S_{\text{pooled}}}, \quad S_{\text{pooled}} = \sqrt{\frac{(n_c-1)s_c^2 + (n_t-1)s_t^2}{n_c + n_t - 2}}$$
+其中离差定义为 $Z_{ij} = |Y_{ij} - \tilde{Y}_i|$。
+
+### 3. Welch's t 检验（异方差自由度修正）
+针对互联网业务中方差不齐的常态，利用 Satterthwaite 公式调整有效自由度 $\nu$：
+
+$$
+\nu \approx \frac{\left( \frac{s_c^2}{n_c} + \frac{s_t^2}{n_t} \right)^2}{\frac{(s_c^2/n_c)^2}{n_c-1} + \frac{(s_t^2/n_t)^2}{n_t-1}}
+$$
+
+### 4. 效应量 Cohen's d
+计算无量纲标准化效应量，量化实际业务增量：
+
+$$
+d = \frac{\bar{X}_t - \bar{X}_c}{S_{\text{pooled}}}, \quad S_{\text{pooled}} = \sqrt{\frac{(n_c-1)s_c^2 + (n_t-1)s_t^2}{n_c + n_t - 2}}
+$$
 
 ---
 
