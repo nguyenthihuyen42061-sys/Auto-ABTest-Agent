@@ -1,0 +1,30 @@
+# Python 字节码与缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 环境配置与敏感凭证 (极其重要)
+.env
+.env.local
+.streamlit/secrets.toml
+
+# 本地专属求职与面试话术文档 (仅供本地查阅，不对外公开)
+docs/resume_and_interview_guide.md
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.venv/
+
+# 编辑器与 IDE 临时配置
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 临时日志与中间产物
+*.log
+.DS_Store
+Thumbs.db
