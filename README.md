@@ -125,7 +125,7 @@ streamlit run app.py
 
 * **开发者**：Jiawen (嘉文) · 统计学硕士研究生 (Master of Statistics)
 * **研究机构**：浙江工商大学 · 统计与数学学院
-* **主要研究兴趣**：数理统计推断、大模型 Agent 状态机架构、数据科学与因果推断
+* **主要研究兴趣**：数理统计推断、大模型 Agent 状态机架构、数据科学与因果推断、金融统计与风险管理
 * **GitHub 项目主页**：[Auto-ABTest-Agent](https://github.com/nguyenthihuyen42061-sys/Auto-ABTest-Agent)
 
 ---
