@@ -91,9 +91,6 @@ $$
 ## 📂 项目结构说明
 
 ```
-├── docs/
-│   ├── Auto-ABTest_Agent_面试复习全流程详解.md # 面试全流程复习白皮书 (Step-by-step 与高频追问)
-│   └── resume_and_interview_guide.md           # 简历提炼与面试核心话术指南
 ├── data/
 │   ├── generate_sample_data.py          # 模拟业务数据生成器 (偏态、异方差、SRM异常)
 │   ├── ab_watch_duration_skewed.csv     # 场景1：长尾对数正态指标（用户停留时长）
@@ -116,7 +113,6 @@ $$
 
 ### 📑 核心文档快速导航
 * 🌟 **[真实运行大模型报告示例（结果生成示例.md）](结果生成示例.md)**：包含完整 SRM 诊断、Welch's $t$ 检验、Bootstrap 95% 置信区间以及高管级商业推断。
-* 📖 **[面试复习与全流程详解（docs/Auto-ABTest_Agent_面试复习全流程详解.md）](docs/Auto-ABTest_Agent_面试复习全流程详解.md)**：深入剖析 5 大研发阶段、状态机节点职责与常见追问攻防。
 
 ---
 

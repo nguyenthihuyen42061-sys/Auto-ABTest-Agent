@@ -9,8 +9,8 @@ __pycache__/
 .env.local
 .streamlit/secrets.toml
 
-# 本地专属求职与面试话术文档 (仅供本地查阅，不对外公开)
-docs/resume_and_interview_guide.md
+# 本地专属复习与求职面试话术文档 (仅供本地私有查阅，不对外公开)
+docs/
 
 # 虚拟环境
 venv/
