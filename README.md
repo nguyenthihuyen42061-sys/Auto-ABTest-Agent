@@ -91,6 +91,9 @@ $$
 ## 📂 项目结构说明
 
 ```
+├── docs/
+│   ├── Auto-ABTest_Agent_面试复习全流程详解.md # 面试全流程复习白皮书 (Step-by-step 与高频追问)
+│   └── resume_and_interview_guide.md           # 简历提炼与面试核心话术指南
 ├── data/
 │   ├── generate_sample_data.py          # 模拟业务数据生成器 (偏态、异方差、SRM异常)
 │   ├── ab_watch_duration_skewed.csv     # 场景1：长尾对数正态指标（用户停留时长）
@@ -105,10 +108,15 @@ $$
 │   └── report_generator.py              # 决策报告生成与 LaTeX 渲染器 (支持在线与离线模板)
 ├── app.py                               # 基于 Streamlit + Plotly 的 Web 交互仪表盘
 ├── run_cli.py                           # 命令行一键测试脚本
+├── 结果生成示例.md                      # 真实运行样例：基于 DeepSeek-V3 实测生成的完整推断决策报告
 ├── requirements.txt                     # 依赖包列表
 ├── LICENSE                              # MIT 开源许可证
 └── README.md                            # 项目公开技术说明文档
 ```
+
+### 📑 核心文档快速导航
+* 🌟 **[真实运行大模型报告示例（结果生成示例.md）](结果生成示例.md)**：包含完整 SRM 诊断、Welch's $t$ 检验、Bootstrap 95% 置信区间以及高管级商业推断。
+* 📖 **[面试复习与全流程详解（docs/Auto-ABTest_Agent_面试复习全流程详解.md）](docs/Auto-ABTest_Agent_面试复习全流程详解.md)**：深入剖析 5 大研发阶段、状态机节点职责与常见追问攻防。
 
 ---
 
@@ -131,7 +139,7 @@ python run_cli.py
 
 ### 4. 启动 Web 可视化看板
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 > 系统在未配置 API Key 时将**自动启用内置学术级确定性离线渲染引擎**，零网络依赖；若配置了 DeepSeek 或 OpenAI Key，将调用大模型生成定制化的高管级深度商业洞察。
 

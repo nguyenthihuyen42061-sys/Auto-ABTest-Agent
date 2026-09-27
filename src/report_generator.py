@@ -114,22 +114,36 @@ def generate_report(state: Dict[str, Any]) -> str:
     """
     根据配置决定调用大模型或生成高质量离线报告
     """
+    import os
+    from src import config
+
+    api_key = config.OPENAI_API_KEY or OPENAI_API_KEY
+    base_url = config.OPENAI_BASE_URL or OPENAI_BASE_URL
+    model_name = config.MODEL_NAME or MODEL_NAME
+
     # 若被 SRM 阻断，优先输出离线标准审计报告（严谨、明确）
     if state.get("aborted", False):
         return generate_offline_report(state)
 
-    if not OPENAI_API_KEY:
+    if not api_key:
         # 离线模式
         return generate_offline_report(state)
 
     try:
+        # 针对国内模型 (如 DeepSeek)，自动将域名加入 NO_PROXY，避免被本地 SOCKS 代理阻断
+        if "deepseek" in base_url.lower():
+            current_np = os.environ.get("NO_PROXY", "")
+            if "deepseek.com" not in current_np:
+                os.environ["NO_PROXY"] = (current_np + ",api.deepseek.com,deepseek.com").strip(",")
+                os.environ["no_proxy"] = os.environ["NO_PROXY"]
+
         from langchain_openai import ChatOpenAI
         from langchain_core.messages import SystemMessage, HumanMessage
 
         llm = ChatOpenAI(
-            model=MODEL_NAME,
-            api_key=OPENAI_API_KEY,
-            base_url=OPENAI_BASE_URL,
+            model=model_name,
+            api_key=api_key,
+            base_url=base_url,
             temperature=0.3
         )
 
